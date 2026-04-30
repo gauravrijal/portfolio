@@ -106,17 +106,17 @@ export default function Awards() {
             <div className="flex items-center justify-center gap-4 mt-8">
               <div className="flex -space-x-2">
                 <img
-                  src="/hero-profile-1.jpg"
+                  src={`${import.meta.env.BASE_URL}hero-profile-1.jpg`}
                   alt=""
                   className="w-8 h-8 rounded-full border-2 border-white object-cover"
                 />
                 <img
-                  src="/profile-avatar.jpg"
+                  src={`${import.meta.env.BASE_URL}profile-avatar.jpg`}
                   alt=""
                   className="w-8 h-8 rounded-full border-2 border-white object-cover"
                 />
                 <img
-                  src="/testimonial-techxpo.jpg"
+                  src={`${import.meta.env.BASE_URL}testimonial-techxpo.jpg`}
                   alt=""
                   className="w-8 h-8 rounded-full border-2 border-white object-cover"
                 />

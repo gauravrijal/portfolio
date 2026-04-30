@@ -39,7 +39,7 @@ export default function Skills() {
           >
             <div className="aspect-[21/9] overflow-hidden">
               <img
-                src="/profile-header.jpg"
+                src={`${import.meta.env.BASE_URL}profile-header.jpg`}
                 alt="Workspace"
                 className="w-full h-full object-cover"
               />
@@ -47,7 +47,7 @@ export default function Skills() {
             <div className="px-6 pb-6">
               <div className="w-[120px] h-[120px] rounded-full border-4 border-white overflow-hidden -mt-[60px] relative shadow-lg">
                 <img
-                  src="/profile-avatar.jpg"
+                  src={`${import.meta.env.BASE_URL}profile-avatar.jpg`}
                   alt="Gaurav Rijal"
                   className="w-full h-full object-cover"
                 />

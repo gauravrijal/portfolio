@@ -90,7 +90,7 @@ export default function Contact() {
             {/* Contact Info */}
             <div className="flex items-center gap-4 mt-6 pt-6 border-t border-[#E5E5E5]">
               <img
-                src="/profile-avatar.jpg"
+                src={`${import.meta.env.BASE_URL}profile-avatar.jpg`}
                 alt="Gaurav"
                 className="w-10 h-10 rounded-full object-cover"
               />

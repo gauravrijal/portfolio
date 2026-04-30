@@ -58,7 +58,7 @@ export default function Hero() {
       {/* Magazine-style hero photo — right portion, feathered edges */}
       <div className="absolute right-0 w-[48%] hidden lg:block" style={{ zIndex: 1, top: '72px', bottom: 0 }}>
         <img
-          src="/hero-profile-1.jpg"
+          src={`${import.meta.env.BASE_URL}hero-profile-1.jpg`}
           alt=""
           aria-hidden
           style={{

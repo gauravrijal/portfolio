@@ -2,17 +2,17 @@ const projects = [
   {
     name: 'Home Server',
     category: 'Linux · Networking · Web Hosting — TechXpo 2024 People\'s Choice Award',
-    image: '/project-home-server.jpg',
+    image: `${import.meta.env.BASE_URL}project-home-server.jpg`,
   },
   {
     name: 'Live ULM Parking',
     category: 'Hackathon Project — Hawkathon 2024',
-    image: '/project-parking.jpg',
+    image: `${import.meta.env.BASE_URL}project-parking.jpg`,
   },
   {
     name: 'Business Blog Website',
     category: 'HTML · CSS · JavaScript · Responsive Design',
-    image: '/project-blog.jpg',
+    image: `${import.meta.env.BASE_URL}project-blog.jpg`,
   },
 ]
 
