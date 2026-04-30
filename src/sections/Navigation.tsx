@@ -1,17 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Menu, X, ArrowUpRight } from 'lucide-react'
 
 export default function Navigation() {
-  const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 100)
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   const navLinks = [
     { label: 'Home', href: '#home' },
