@@ -53,7 +53,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative flex items-center overflow-hidden lg:min-h-screen"
     >
       {/* Magazine-style hero photo — right portion on desktop, watermark on mobile */}
       <div 
@@ -80,7 +80,7 @@ export default function Hero() {
       {/* Text content */}
       <div
         ref={heroRef}
-        className="max-w-[1200px] mx-auto px-6 md:px-12 pt-12 pb-32 md:pt-16 md:pb-40 w-full relative"
+        className="max-w-[1200px] mx-auto px-6 md:px-12 pt-32 pb-20 md:pt-40 md:pb-32 lg:pt-16 lg:pb-40 w-full relative"
         style={{ zIndex: 10 }}
       >
         <div className="max-w-[560px]">
