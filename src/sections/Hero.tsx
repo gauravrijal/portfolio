@@ -55,8 +55,11 @@ export default function Hero() {
       id="home"
       className="relative min-h-screen flex items-center overflow-hidden"
     >
-      {/* Magazine-style hero photo — right portion, feathered edges */}
-      <div className="absolute right-0 w-[48%] hidden lg:block" style={{ zIndex: 1, top: '72px', bottom: 0 }}>
+      {/* Magazine-style hero photo — right portion on desktop, watermark on mobile */}
+      <div 
+        className="absolute right-0 w-full lg:w-[48%] opacity-[0.08] lg:opacity-100 pointer-events-none transition-opacity duration-500" 
+        style={{ zIndex: 1, top: '72px', bottom: 0 }}
+      >
         <img
           src={`${import.meta.env.BASE_URL}hero-profile-1.jpg`}
           alt=""
@@ -77,52 +80,52 @@ export default function Hero() {
       {/* Text content */}
       <div
         ref={heroRef}
-        className="max-w-[1200px] mx-auto px-6 md:px-12 py-32 md:py-40 w-full relative"
+        className="max-w-[1200px] mx-auto px-6 md:px-12 pt-12 pb-32 md:pt-16 md:pb-40 w-full relative"
         style={{ zIndex: 10 }}
       >
         <div className="max-w-[560px]">
 
           {/* Line 1 */}
           <div data-hero-line>
-            <span className="font-display text-[32px] md:text-[48px] text-[#1A1A1A] leading-[1.15] tracking-tight">
+            <span className="font-display text-[32px] md:text-[48px] text-[#1A1A1A] dark:text-[#EAEAEA] leading-[1.15] tracking-tight">
               Hey, I'm Gaurav
             </span>
           </div>
 
           {/* Line 2 */}
           <div data-hero-line className="mt-1">
-            <span className="font-display text-[32px] md:text-[48px] text-[#1A1A1A] leading-[1.15] tracking-tight">
-              CS Student &amp;
+            <span className="font-display text-[32px] md:text-[48px] text-[#1A1A1A] dark:text-[#EAEAEA] leading-[1.15] tracking-tight">
+              Software
             </span>
           </div>
 
           {/* Line 3 */}
           <div data-hero-line className="mt-1">
-            <span className="font-display text-[32px] md:text-[48px] text-[#1A1A1A] leading-[1.15] tracking-tight">
+            <span className="font-display text-[32px] md:text-[48px] text-[#1A1A1A] dark:text-[#EAEAEA] leading-[1.15] tracking-tight">
               Developer
             </span>
           </div>
 
           {/* Line 4 */}
           <div data-hero-line className="mt-1">
-            <span className="font-display text-[32px] md:text-[48px] text-[#1A1A1A] leading-[1.15] tracking-tight">
+            <span className="font-display text-[32px] md:text-[48px] text-[#1A1A1A] dark:text-[#EAEAEA] leading-[1.15] tracking-tight">
               Based in Louisiana
             </span>
           </div>
 
           {/* Subtitle */}
-          <p data-hero-sub className="mt-6 text-base text-[#666] max-w-[480px] leading-relaxed">
+          <p data-hero-sub className="mt-6 text-base text-[#666] dark:text-[#A1A1A1] max-w-[480px] leading-relaxed">
             I specialize in full-stack web development, system architecture, and
-            creative problem-solving. Currently pursuing my B.S. in Computer
-            Science at ULM, building impactful projects and seeking Software
-            Engineering opportunities.
+            creative problem-solving. B.S. in Computer Science from ULM,
+            building impactful projects and seeking Software Engineering
+            opportunities.
           </p>
 
           {/* CTA */}
           <a
             data-hero-sub
             href="#contact"
-            className="inline-flex items-center gap-2 bg-black text-white text-sm font-medium px-7 py-3.5 rounded-full hover:bg-[#333] hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 mt-8"
+            className="inline-flex items-center gap-2 bg-[#1A1A1A] dark:bg-[#EAEAEA] text-white dark:text-[#1A1A1A] text-sm font-medium px-7 py-3.5 rounded-full hover:bg-[#333] dark:hover:bg-white hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 mt-8"
           >
             Get In Touch Today
             <ArrowUpRight size={16} />

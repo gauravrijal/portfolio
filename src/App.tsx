@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+import Lenis from 'lenis'
 import { useScrollAnimation } from './hooks/useScrollAnimation'
 import Navigation from './sections/Navigation'
 import Hero from './sections/Hero'
@@ -12,8 +14,31 @@ import Footer from './sections/Footer'
 function App() {
   useScrollAnimation()
 
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    })
+
+    function raf(time: number) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+
+    requestAnimationFrame(raf)
+
+    return () => {
+      lenis.destroy()
+    }
+  }, [])
+
   return (
-    <div className="min-h-screen bg-[#F2F2F2]">
+    <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#0A0A0A] transition-colors duration-300">
       <Navigation />
       <Hero />
       <Projects />

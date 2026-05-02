@@ -41,12 +41,12 @@ export default function Process() {
       <div className="max-w-[1300px] mx-auto px-6 md:px-12">
         <div data-animate data-delay="0">
           <div className="flex items-center gap-2 mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#1A1A1A]"></span>
-            <span className="text-[13px] font-medium text-[#666] tracking-wide">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#1A1A1A] dark:bg-[#EAEAEA]"></span>
+            <span className="text-[13px] font-medium text-[#666] dark:text-[#A1A1A1] tracking-wide">
               Education & Process
             </span>
           </div>
-          <h2 className="font-display text-[32px] md:text-[48px] text-[#1A1A1A] leading-[1.15] max-w-[600px] mb-12">
+          <h2 className="font-display text-[32px] md:text-[48px] text-[#1A1A1A] dark:text-[#EAEAEA] leading-[1.15] max-w-[600px] mb-12">
             The path that shaped my expertise
           </h2>
         </div>
@@ -54,7 +54,7 @@ export default function Process() {
         <div className="relative" data-animate data-stagger="0.2">
           {/* Timeline line */}
           <div
-            className="absolute left-[15px] md:left-[19px] top-0 bottom-0 w-px bg-[#E5E5E5] origin-top"
+            className="absolute left-[15px] md:left-[19px] top-0 bottom-0 w-px bg-[#E5E5E5] dark:bg-white/10 origin-top"
             data-timeline-line
           />
 
@@ -66,22 +66,22 @@ export default function Process() {
                 data-animate-child
               >
                 {/* Timeline dot */}
-                <div className="absolute left-0 md:left-1 top-6 w-3 h-3 md:w-4 md:h-4 rounded-full bg-[#1A1A1A] border-4 border-[#F2F2F2]" />
+                <div className="absolute left-0 md:left-1 top-6 w-3 h-3 md:w-4 md:h-4 rounded-full bg-[#1A1A1A] dark:bg-[#EAEAEA] border-4 border-[#F2F2F2] dark:border-[#0A0A0A]" />
 
                 {/* Card */}
-                <div className="bg-[#F8F8F8] rounded-2xl p-6 md:p-8 hover:-translate-y-1 hover:shadow-lg transition-all duration-400">
-                  <span className="text-xs text-[#999] font-medium uppercase tracking-wider">
+                <div className="bg-[#F8F8F8] dark:bg-[#111] rounded-2xl p-6 md:p-8 hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-white/5 transition-all duration-400">
+                  <span className="text-xs text-[#999] dark:text-[#777] font-medium uppercase tracking-wider">
                     {step.label}
                   </span>
-                  <h3 className="text-xl font-semibold text-[#1A1A1A] mt-2 mb-3">
+                  <h3 className="text-xl font-semibold text-[#1A1A1A] dark:text-[#EAEAEA] mt-2 mb-3">
                     {step.title}
                   </h3>
-                  <p className="text-sm text-[#666] leading-relaxed">
+                  <p className="text-sm text-[#666] dark:text-[#A1A1A1] leading-relaxed">
                     {step.description}
                   </p>
                   <div className="flex items-center justify-between mt-6">
-                    <step.icon size={28} className="text-[#666]" />
-                    <span className="text-sm text-[#999] font-medium">
+                    <step.icon size={28} className="text-[#666] dark:text-[#A1A1A1]" />
+                    <span className="text-sm text-[#999] dark:text-[#777] font-medium">
                       {step.number}
                     </span>
                   </div>

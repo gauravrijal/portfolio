@@ -20,7 +20,7 @@ const faqs = [
   {
     question: 'What is your educational background?',
     answer:
-      'I\'m pursuing a B.S. in Computer Science at the University of Louisiana at Monroe (Expected May 2026) with a GPA of 3.34. My coursework covers algorithms, databases, networking, operating systems, and software engineering.',
+      'I graduated with a B.S. in Computer Science from the University of Louisiana at Monroe (May 2026) with a GPA of 3.34. My coursework covered algorithms, databases, networking, operating systems, and software engineering.',
   },
   {
     question: 'How can I contact you?',
@@ -41,12 +41,12 @@ export default function FAQ() {
       <div className="max-w-[1300px] mx-auto px-6 md:px-12">
         <div data-animate data-delay="0">
           <div className="flex items-center gap-2 mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#1A1A1A]"></span>
-            <span className="text-[13px] font-medium text-[#666] tracking-wide">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#1A1A1A] dark:bg-[#EAEAEA]"></span>
+            <span className="text-[13px] font-medium text-[#666] dark:text-[#A1A1A1] tracking-wide">
               FAQ'S
             </span>
           </div>
-          <h2 className="font-display text-[32px] md:text-[48px] text-[#1A1A1A] leading-[1.15] max-w-[600px] mb-12">
+          <h2 className="font-display text-[32px] md:text-[48px] text-[#1A1A1A] dark:text-[#EAEAEA] leading-[1.15] max-w-[600px] mb-12">
             Common questions, answered with clarity
           </h2>
         </div>
@@ -55,19 +55,19 @@ export default function FAQ() {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="bg-[#F8F8F8] rounded-xl overflow-hidden"
+              className="bg-[#F8F8F8] dark:bg-[#111] rounded-xl overflow-hidden"
               data-animate-child
             >
               <button
                 className="w-full flex items-center justify-between p-5 md:p-6 text-left"
                 onClick={() => toggle(index)}
               >
-                <span className="text-base font-medium text-[#1A1A1A] pr-4">
+                <span className="text-base font-medium text-[#1A1A1A] dark:text-[#EAEAEA] pr-4">
                   {faq.question}
                 </span>
                 <ChevronUp
                   size={18}
-                  className={`text-[#666] shrink-0 transition-transform duration-300 ${
+                  className={`text-[#666] dark:text-[#A1A1A1] shrink-0 transition-transform duration-300 ${
                     openIndex === index ? 'rotate-180' : ''
                   }`}
                 />
@@ -77,7 +77,7 @@ export default function FAQ() {
                   openIndex === index ? 'max-h-96' : 'max-h-0'
                 }`}
               >
-                <p className="px-5 md:px-6 pb-5 md:pb-6 text-sm text-[#666] leading-relaxed">
+                <p className="px-5 md:px-6 pb-5 md:pb-6 text-sm text-[#666] dark:text-[#A1A1A1] leading-relaxed">
                   {faq.answer}
                 </p>
               </div>
