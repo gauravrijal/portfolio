@@ -15,12 +15,12 @@ const faqs = [
   {
     question: 'Are you currently available for internships?',
     answer:
-      'Yes, I\'m actively seeking Software Engineering internship opportunities for Summer 2025 and beyond. I\'m eager to apply my skills in a professional environment and contribute to meaningful projects.',
+      'Yes, I\'m actively seeking Software Engineering internship and job opportunities. I\'m eager to apply my skills in a professional environment and contribute to meaningful projects.',
   },
   {
     question: 'What is your educational background?',
     answer:
-      'I graduated with a B.S. in Computer Science from the University of Louisiana at Monroe (May 2026) with a GPA of 3.34. My coursework covered algorithms, databases, networking, operating systems, and software engineering.',
+      'I graduated with a B.S. in Computer Science from the University of Louisiana at Monroe (May 2026). My coursework covered algorithms, databases, networking, operating systems, and software engineering.',
   },
   {
     question: 'How can I contact you?',

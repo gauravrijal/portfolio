@@ -5,7 +5,7 @@ const steps = [
     label: 'step1',
     title: 'Education Foundation',
     description:
-      'B.S. in Computer Science at University of Louisiana at Monroe (GPA 3.34). Building strong foundations in algorithms, data structures, networking, and software engineering principles.',
+      'B.S. in Computer Science at University of Louisiana at Monroe. Building strong foundations in algorithms, data structures, networking, and software engineering principles.',
     icon: GraduationCap,
     number: '- 001',
   },
