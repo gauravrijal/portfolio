@@ -1,7 +1,14 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState, useEffect, useCallback } from 'react'
 import { Play, Pause } from 'lucide-react'
 
-const projects = [
+interface Project {
+  name: string
+  category: string
+  image: string
+  link?: string
+}
+
+const projects: Project[] = [
   {
     name: 'Home Server',
     category: 'Linux · Networking · Web Hosting — TechXpo 2024 People\'s Choice Award',
@@ -42,7 +49,7 @@ export default function Projects() {
 
   const maxIndex = Math.max(0, projects.length - cardsPerView)
 
-  const checkScroll = () => {
+  const checkScroll = useCallback(() => {
     const el = scrollRef.current
     if (!el) return
 
@@ -63,7 +70,7 @@ export default function Projects() {
     })
     
     setActiveIndex(Math.min(closest, maxIndex))
-  }
+  }, [maxIndex])
 
   const scrollToCard = (index: number) => {
     const el = scrollRef.current
@@ -92,7 +99,7 @@ export default function Projects() {
     return () => {
       el.removeEventListener('scroll', checkScroll)
     }
-  }, [maxIndex]) // Re-run initial check if layout changes drastically
+  }, [maxIndex, checkScroll]) // Re-run initial check if layout changes drastically
 
   useEffect(() => {
     if (isPaused) return
@@ -161,9 +168,9 @@ export default function Projects() {
           }}
         >
           {projects.map((project) => {
-            const Wrapper = (project as any).link ? 'a' : 'div'
-            const linkProps = (project as any).link
-              ? { href: (project as any).link, target: '_blank', rel: 'noopener noreferrer' }
+            const Wrapper = project.link ? 'a' : 'div'
+            const linkProps = project.link
+              ? { href: project.link, target: '_blank', rel: 'noopener noreferrer' }
               : {}
             return (
               <Wrapper

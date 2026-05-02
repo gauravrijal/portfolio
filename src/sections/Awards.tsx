@@ -1,7 +1,15 @@
 import { useState } from 'react'
 import { ChevronLeft, ChevronRight, Star } from 'lucide-react'
 
-const testimonials = [
+interface Testimonial {
+  quote: string
+  name: string
+  org: string
+  avatar: string
+  link?: string
+}
+
+const testimonials: Testimonial[] = [
   {
     quote:
       'Home Server project recognized for innovation and practical application. A personal server setup demonstrating networking, storage, and security configuration skills.',
@@ -63,11 +71,11 @@ export default function Awards() {
               <div className="flex-1 mb-4">
                 <p className="text-lg text-[#1A1A1A] dark:text-[#EAEAEA] leading-relaxed">
                   "{testimonials[current].quote}"
-                  {(testimonials[current] as any).link && (
+                  {testimonials[current].link && (
                     <>
                       {' '}
                       <a
-                        href={(testimonials[current] as any).link}
+                        href={testimonials[current].link}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline text-sm font-medium text-[#666] dark:text-[#A1A1A1] hover:text-[#1A1A1A] dark:hover:text-white underline underline-offset-4 decoration-[#E5E5E5] dark:decoration-white/20 hover:decoration-[#1A1A1A] dark:hover:decoration-white transition-colors duration-300"
@@ -127,23 +135,11 @@ export default function Awards() {
 
             {/* Trusted By */}
             <div className="flex items-center justify-center gap-4 mt-8">
-              <div className="flex -space-x-2">
-                <img
-                  src={`${import.meta.env.BASE_URL}hero-profile-1.jpg`}
-                  alt=""
-                  className="w-8 h-8 rounded-full border-2 border-[#F2F2F2] dark:border-[#0A0A0A] object-cover"
-                />
-                <img
-                  src={`${import.meta.env.BASE_URL}profile-avatar.jpg`}
-                  alt=""
-                  className="w-8 h-8 rounded-full border-2 border-[#F2F2F2] dark:border-[#0A0A0A] object-cover"
-                />
-                <img
-                  src={`${import.meta.env.BASE_URL}testimonial-techxpo.jpg`}
-                  alt=""
-                  className="w-8 h-8 rounded-full border-2 border-[#F2F2F2] dark:border-[#0A0A0A] object-cover"
-                />
-              </div>
+              <img
+                src={`${import.meta.env.BASE_URL}profile-avatar.jpg`}
+                alt="Gaurav"
+                className="w-8 h-8 rounded-full border-2 border-[#F2F2F2] dark:border-[#0A0A0A] object-cover"
+              />
               <p className="text-sm text-[#666] dark:text-[#A1A1A1]">
                 Driven by passion for technology and innovation
               </p>
