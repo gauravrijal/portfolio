@@ -21,8 +21,9 @@ export default function Navigation() {
 
   const navLinks = [
     { label: 'Home', href: '#home' },
-    { label: 'Projects', href: '#projects' },
     { label: 'Experience', href: '#experience' },
+    { label: 'Skills', href: '#skills' },
+    { label: 'Certifications', href: '#certifications' },
     { label: 'Contact', href: '#contact' },
   ]
 
@@ -113,19 +114,17 @@ export default function Navigation() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-500 bg-[#F2F2F2]/85 dark:bg-[#0A0A0A]/85 ${
-          mobileMenuOpen
+        className={`fixed inset-0 z-40 md:hidden transition-all duration-500 bg-[#F2F2F2]/85 dark:bg-[#0A0A0A]/85 ${mobileMenuOpen
             ? 'opacity-100 pointer-events-auto'
             : 'opacity-0 pointer-events-none'
-        }`}
+          }`}
         style={{
           WebkitBackdropFilter: 'blur(20px) saturate(180%)',
           backdropFilter: 'blur(20px) saturate(180%)',
         }}
       >
-        <div className={`flex flex-col gap-6 pt-28 px-8 transition-all duration-500 ${
-          mobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
-        }`}>
+        <div className={`flex flex-col gap-6 pt-28 px-8 transition-all duration-500 ${mobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
+          }`}>
           {navLinks.map((link, i) => (
             <a
               key={link.label}

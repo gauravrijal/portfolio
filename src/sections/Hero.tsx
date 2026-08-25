@@ -95,30 +95,30 @@ export default function Hero() {
           {/* Line 2 */}
           <div data-hero-line className="mt-1">
             <span className="font-display text-[32px] md:text-[48px] text-[#1A1A1A] dark:text-[#EAEAEA] leading-[1.15] tracking-tight">
-              Software
+              Certified
             </span>
           </div>
 
           {/* Line 3 */}
           <div data-hero-line className="mt-1">
             <span className="font-display text-[32px] md:text-[48px] text-[#1A1A1A] dark:text-[#EAEAEA] leading-[1.15] tracking-tight">
-              Developer
+              IAM Engineer
             </span>
           </div>
 
           {/* Line 4 */}
           <div data-hero-line className="mt-1">
             <span className="font-display text-[32px] md:text-[48px] text-[#1A1A1A] dark:text-[#EAEAEA] leading-[1.15] tracking-tight">
-              Based in Louisiana
+              Based in Texas
             </span>
           </div>
 
           {/* Subtitle */}
           <p data-hero-sub className="mt-6 text-base text-[#666] dark:text-[#A1A1A1] max-w-[480px] leading-relaxed">
-            I specialize in full-stack web development, system architecture, and
-            creative problem-solving. B.S. in Computer Science from ULM,
-            building impactful projects and seeking Software Engineering
-            opportunities.
+            Certified IAM Engineer with 6+ years of experience specializing in
+            SailPoint IdentityIQ, Identity Security Cloud, and Okta. I design
+            identity governance solutions that automate access lifecycles,
+            enforce least privilege, and keep enterprises audit-ready.
           </p>
 
           {/* CTA */}

@@ -112,7 +112,7 @@ export default function Projects() {
   }, [isPaused, activeIndex, maxIndex])
 
   return (
-    <section id="projects" className="py-20 md:py-32">
+    <section id="certifications" className="py-20 md:py-32">
       <div className="max-w-[1400px] mx-auto px-6 md:px-12">
         <div data-animate data-delay="0" className="text-center mb-12">
           <div className="flex items-center justify-center gap-2 mb-4">
