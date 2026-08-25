@@ -3,11 +3,18 @@ import { ShieldCheck, Building2, HeartPulse, Code2, ChevronDown } from 'lucide-r
 
 const VISIBLE_BULLETS = 4
 
+const renderBullet = (bullet: string) => (
+  <li key={bullet} className="flex gap-3">
+    <span className="mt-[7px] w-1 h-1 rounded-full bg-[#999] dark:bg-[#777] shrink-0" />
+    <span className="text-sm text-[#666] dark:text-[#A1A1A1] leading-relaxed">{bullet}</span>
+  </li>
+)
+
 const roles = [
   {
     label: 'Farm Bureau · San Antonio, TX',
     title: 'IAM SailPoint Engineer',
-    period: 'May 2025 – Present',
+    period: 'May 2025 - Present',
     icon: ShieldCheck,
     bullets: [
       'Deployed IdentityNow and Identity Security Cloud to automate provisioning, deprovisioning, and access reviews, reducing onboarding time by 40%.',
@@ -15,7 +22,7 @@ const roles = [
       'Automated Role-Based Access Control and policy enforcement within ISC, removing excess privileges and aligning entitlements with least-privilege principles.',
       'Managed the IDN Non-Employee Risk Management module, administering user profiles, processes, administrative roles, and SAML-based SSO.',
       'Installed and customized SailPoint IdentityNow connectors across Active Directory, Azure AD, JDBC, Workday, SAP, and ServiceNow.',
-      'Deployed Joiner–Mover–Leaver lifecycle workflows to eliminate orphaned accounts and strengthen audit readiness.',
+      'Deployed Joiner-Mover-Leaver lifecycle workflows to eliminate orphaned accounts and strengthen audit readiness.',
       'Sponsored access certification campaigns and risk-driven access audits supporting SOX, HIPAA, and ISO 27001 compliance.',
       'Integrated Okta with enterprise SaaS, HR systems, VPNs, Microsoft 365, Salesforce, and Workday to secure access for thousands of users.',
       'Deployed Okta Adaptive MFA and Conditional Access policies driven by location, device posture, and IP reputation signals.',
@@ -25,14 +32,14 @@ const roles = [
   {
     label: 'Deloitte · Austin, TX',
     title: 'IAM Engineer',
-    period: 'June 2023 – May 2025',
+    period: 'June 2023 - May 2025',
     icon: Building2,
     bullets: [
       'Designed and implemented SailPoint IdentityIQ for end-to-end lifecycle management, access certifications, and audit reporting across 50,000+ identities.',
       'Migrated IAM architecture from SailPoint IIQ to Identity Security Cloud, refactoring legacy roles and cutting infrastructure overhead by 40%.',
       'Applied ISC Access Modeling and Identity Analytics to uncover entitlement bloat, cutting excess permissions by over 35%.',
       'Configured SailPoint ISC integrations with Microsoft Entra ID for SCIM-based provisioning across 100+ SaaS and IaaS applications.',
-      'Developed custom IIQ rules — BuildMap, Correlation, Provisioning, and Policy Violation — plus onboarding workflows for SAP, Oracle, and legacy mainframe systems.',
+      'Developed custom IIQ rules (BuildMap, Correlation, Provisioning, Policy Violation) plus onboarding workflows for SAP, Oracle, and legacy mainframe systems.',
       'Architected Just-in-Time access provisioning for privileged users with granular role definitions and time-bound approval workflows.',
       'Leveraged Entra ID Conditional Access, Privileged Identity Management, and Self-Service Password Reset to strengthen identity security.',
       'Delivered unified governance by integrating SailPoint ISC with Entra ID, Okta, and ServiceNow via REST APIs and SCIM interfaces.',
@@ -43,7 +50,7 @@ const roles = [
   {
     label: 'Tenet Healthcare · Dallas, TX',
     title: 'SailPoint Consultant',
-    period: 'July 2021 – June 2023',
+    period: 'July 2021 - June 2023',
     icon: HeartPulse,
     bullets: [
       'Engineered customized approval procedures and modified out-of-the-box workflows to meet healthcare regulatory and client requirements.',
@@ -60,7 +67,7 @@ const roles = [
   {
     label: 'ATOS · Irving, TX',
     title: 'IAM Software Developer',
-    period: 'August 2020 – July 2021',
+    period: 'August 2020 - July 2021',
     icon: Code2,
     bullets: [
       'Administered and maintained SailPoint IIQ policy servers across Dev, QA, UAT, and Production environments.',
@@ -107,8 +114,8 @@ export default function Process() {
           <div className="flex flex-col gap-8">
             {roles.map((role) => {
               const isOpen = expanded[role.label]
-              const shown = isOpen ? role.bullets : role.bullets.slice(0, VISIBLE_BULLETS)
-              const hiddenCount = role.bullets.length - VISIBLE_BULLETS
+              const visibleBullets = role.bullets.slice(0, VISIBLE_BULLETS)
+              const extraBullets = role.bullets.slice(VISIBLE_BULLETS)
 
               return (
                 <div
@@ -129,28 +136,36 @@ export default function Process() {
                     </h3>
 
                     <ul className="flex flex-col gap-2.5">
-                      {shown.map((bullet) => (
-                        <li key={bullet} className="flex gap-3">
-                          <span className="mt-[7px] w-1 h-1 rounded-full bg-[#999] dark:bg-[#777] shrink-0" />
-                          <span className="text-sm text-[#666] dark:text-[#A1A1A1] leading-relaxed">
-                            {bullet}
-                          </span>
-                        </li>
-                      ))}
+                      {visibleBullets.map(renderBullet)}
                     </ul>
 
-                    {hiddenCount > 0 && (
-                      <button
-                        onClick={() => toggle(role.label)}
-                        className="inline-flex items-center gap-1.5 mt-4 text-sm font-medium text-[#1A1A1A] dark:text-[#EAEAEA] hover:opacity-70 transition-opacity duration-200"
-                        aria-expanded={!!isOpen}
-                      >
-                        {isOpen ? 'Show less' : `Show ${hiddenCount} more`}
-                        <ChevronDown
-                          size={16}
-                          className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-                        />
-                      </button>
+                    {extraBullets.length > 0 && (
+                      <>
+                        <div
+                          className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+                            isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                          }`}
+                          aria-hidden={!isOpen}
+                        >
+                          <div className="overflow-hidden">
+                            <ul className="flex flex-col gap-2.5 pt-2.5">
+                              {extraBullets.map(renderBullet)}
+                            </ul>
+                          </div>
+                        </div>
+
+                        <button
+                          onClick={() => toggle(role.label)}
+                          className="inline-flex items-center gap-1.5 mt-4 text-sm font-medium text-[#1A1A1A] dark:text-[#EAEAEA] hover:opacity-70 transition-opacity duration-200"
+                          aria-expanded={!!isOpen}
+                        >
+                          {isOpen ? 'Show less' : `Show ${extraBullets.length} more`}
+                          <ChevronDown
+                            size={16}
+                            className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                          />
+                        </button>
+                      </>
                     )}
 
                     <div className="flex items-center justify-between mt-6">

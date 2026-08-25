@@ -1,38 +1,47 @@
 import { useRef, useState, useEffect, useCallback } from 'react'
 import { Play, Pause } from 'lucide-react'
 
-interface Project {
+interface Certification {
   name: string
-  category: string
+  issuer: string
   image: string
   link?: string
 }
 
-const projects: Project[] = [
+const certifications: Certification[] = [
   {
-    name: 'Home Server',
-    category: 'Linux · Networking · Web Hosting — TechXpo 2024 People\'s Choice Award',
-    image: `${import.meta.env.BASE_URL}project-home-server.jpg`,
+    name: 'SailPoint Identity Security Leader Credential',
+    issuer: 'SailPoint',
+    image: `${import.meta.env.BASE_URL}certificates/SailPoint_Identity_Security_Leader.png`,
   },
   {
-    name: 'CareerGenie',
-    category: 'AI Career Discovery · React · Firebase — Hawkathon 2026',
-    image: `${import.meta.env.BASE_URL}project-careergenie.png`,
-    link: 'https://www.careergenie.tech/',
+    name: 'Saviynt Identity Security for AI Age',
+    issuer: 'Saviynt',
+    image: `${import.meta.env.BASE_URL}certificates/Saviynt_Certificate.png`,
   },
   {
-    name: 'Live ULM Parking',
-    category: 'Hackathon Project — Hawkathon 2024',
-    image: `${import.meta.env.BASE_URL}project-parking.jpg`,
+    name: 'Non-Human Identity Fundamentals',
+    issuer: 'NHI Academy',
+    image: `${import.meta.env.BASE_URL}certificates/NHI_Certificate.png`,
   },
   {
-    name: 'Business Blog Website',
-    category: 'HTML · CSS · JavaScript · Responsive Design',
-    image: `${import.meta.env.BASE_URL}project-blog.jpg`,
+    name: 'Ethical Hacking Essentials (EHE)',
+    issuer: 'EC-Council',
+    image: `${import.meta.env.BASE_URL}certificates/EHE_Certificate.png`,
+  },
+  {
+    name: 'AWS Certified Cloud Practitioner',
+    issuer: 'Amazon Web Services',
+    image: `${import.meta.env.BASE_URL}certificates/AWS_Cloud.png`,
+  },
+  {
+    name: 'AWS Certified AI Practitioner',
+    issuer: 'Amazon Web Services',
+    image: `${import.meta.env.BASE_URL}certificates/AWS_AI_Practitioner.png`,
   },
 ]
 
-export default function Projects() {
+export default function Certifications() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
@@ -40,14 +49,15 @@ export default function Projects() {
 
   useEffect(() => {
     const updateCardsPerView = () => {
-      setCardsPerView(window.innerWidth >= 768 ? 2 : 1)
+      const w = window.innerWidth
+      setCardsPerView(w >= 1280 ? 3 : w >= 768 ? 2 : 1)
     }
     updateCardsPerView()
     window.addEventListener('resize', updateCardsPerView)
     return () => window.removeEventListener('resize', updateCardsPerView)
   }, [])
 
-  const maxIndex = Math.max(0, projects.length - cardsPerView)
+  const maxIndex = Math.max(0, certifications.length - cardsPerView)
 
   const checkScroll = useCallback(() => {
     const el = scrollRef.current
@@ -118,11 +128,11 @@ export default function Projects() {
           <div className="flex items-center justify-center gap-2 mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-[#1A1A1A] dark:bg-[#EAEAEA]"></span>
             <span className="text-[13px] font-medium text-[#666] dark:text-[#A1A1A1] tracking-wide">
-              My Projects
+              Certifications
             </span>
           </div>
           <h2 className="font-display text-[32px] md:text-[48px] text-[#1A1A1A] dark:text-[#EAEAEA] leading-[1.15] max-w-[600px] mx-auto">
-            The projects that turn ideas into reality
+            Credentials that back the practice
           </h2>
         </div>
       </div>
@@ -167,30 +177,32 @@ export default function Projects() {
             document.addEventListener('mouseup', onUp)
           }}
         >
-          {projects.map((project) => {
-            const Wrapper = project.link ? 'a' : 'div'
-            const linkProps = project.link
-              ? { href: project.link, target: '_blank', rel: 'noopener noreferrer' }
+          {certifications.map((cert) => {
+            const Wrapper = cert.link ? 'a' : 'div'
+            const linkProps = cert.link
+              ? { href: cert.link, target: '_blank', rel: 'noopener noreferrer' }
               : {}
             return (
               <Wrapper
-                key={project.name}
+                key={cert.name}
                 {...linkProps}
-                className="w-full md:w-[calc(50%-12px)] bg-white dark:bg-[#111] border border-[#E5E5E5] dark:border-white/10 rounded-2xl overflow-hidden hover:-translate-y-2 hover:shadow-xl dark:hover:shadow-white/5 transition-all duration-300 flex-shrink-0 block snap-start"
+                className="w-full md:w-[calc(50%-12px)] xl:w-[calc(33.333%-16px)] bg-white dark:bg-[#111] border border-[#E5E5E5] dark:border-white/10 rounded-2xl overflow-hidden hover:-translate-y-2 hover:shadow-xl dark:hover:shadow-white/5 transition-all duration-300 flex-shrink-0 block snap-start"
                 data-animate-child
               >
-                <div className="aspect-[4/3] md:aspect-[16/9] overflow-hidden">
+                <div className="aspect-[4/3] overflow-hidden bg-[#F8F8F8] dark:bg-[#0A0A0A] p-4 md:p-6">
                   <img
-                    src={project.image}
-                    alt={project.name}
-                    className="w-full h-full object-cover opacity-100 dark:opacity-90"
+                    src={cert.image}
+                    alt={cert.name}
+                    className="w-full h-full object-contain opacity-100 dark:opacity-90"
                   />
                 </div>
                 <div className="p-5 md:p-6">
                   <h3 className="text-lg font-medium text-[#1A1A1A] dark:text-[#EAEAEA]">
-                    {project.name}
+                    {cert.name}
                   </h3>
-                  <p className="text-sm text-[#666] dark:text-[#A1A1A1] mt-2 leading-relaxed">{project.category}</p>
+                  <p className="text-sm text-[#666] dark:text-[#A1A1A1] mt-2 leading-relaxed">
+                    {cert.issuer}
+                  </p>
                 </div>
               </Wrapper>
             )

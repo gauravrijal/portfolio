@@ -55,7 +55,7 @@ export default function Hero() {
       id="home"
       className="relative flex items-center overflow-hidden lg:min-h-screen"
     >
-      {/* Magazine-style hero photo — right portion on desktop, watermark on mobile */}
+      {/* Magazine-style hero photo - right portion on desktop, watermark on mobile */}
       <div 
         className="absolute right-0 w-full lg:w-[48%] opacity-[0.08] lg:opacity-100 pointer-events-none transition-opacity duration-500" 
         style={{ zIndex: 1, top: '72px', bottom: 0 }}
