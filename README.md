@@ -1,90 +1,140 @@
-# Gaurav Rijal — Portfolio
+# Gaurav Rijal - Portfolio
 
-A modern, minimal personal portfolio website built with React, TypeScript, and Vite. Features a magazine-style hero layout, smooth scroll animations, and a clean design system.
+Personal portfolio for a certified IAM engineer, built with React, TypeScript,
+and Vite. Minimal magazine-style design with GSAP scroll animations, Lenis
+smooth scrolling, and light/dark themes.
 
-## ✨ Features
+## Sections
 
-- **Magazine-style Hero** — Large feathered profile photo with CSS mask gradients behind the headline text
-- **Transparent Navigation** — Floating navbar that stays transparent as you scroll
-- **Scroll Animations** — GSAP-powered entrance animations triggered on scroll
-- **Project Showcase** — Centered 2-column grid of project cards
-- **Skills & Experience** — Accordion-style sections with clean typography
-- **Contact Form** — Integrated contact section
-- **Responsive Design** — Fully responsive layout from mobile to desktop
+| Section | Content |
+|---|---|
+| Hero | Magazine-style layout with a feathered profile photo behind the headline |
+| Experience | Timeline of four roles, bullets expandable per role |
+| Skills | Technical skills grouped by category, collapsible on mobile |
+| Certifications | Carousel of credential images with drag, autoplay, and pagination |
+| Impact | Carousel of metric-driven outcomes |
+| FAQ | Accordion of five questions |
+| Contact | Web3Forms-backed form, email, and social links |
 
-## 🛠 Tech Stack
+## Tech Stack
 
-| Layer        | Technology                              |
-| ------------ | --------------------------------------- |
-| Framework    | React 19 + TypeScript                   |
-| Build        | Vite 7                                  |
-| Styling      | Tailwind CSS 3 + CSS Modules            |
-| Animations   | GSAP (ScrollTrigger)                    |
-| UI Components| Radix UI + shadcn/ui                    |
-| 3D (unused)  | Three.js (HeroKnot component, reserved) |
-| Icons        | Lucide React                            |
-| Routing      | React Router 7                          |
+| Layer | Technology |
+|---|---|
+| Framework | React 19 + TypeScript |
+| Build | Vite 7 |
+| Styling | Tailwind CSS 3 |
+| Animations | GSAP (ScrollTrigger) |
+| Smooth scroll | Lenis |
+| UI components | Radix UI + shadcn/ui |
+| Icons | Lucide React |
+| Forms | Web3Forms |
+| Hosting | GitHub Pages |
 
-## 🚀 Getting Started
+## Getting Started
 
-### Prerequisites
-
-- Node.js 18+
-- npm or yarn
-
-### Installation
+Requires Node.js 18 or newer.
 
 ```bash
-# Clone the repository
 git clone https://github.com/gauravrijal/portfolio.git
-cd portfolio/app
-
-# Install dependencies
+cd portfolio
 npm install
-
-# Start the dev server
 npm run dev
 ```
 
-The app will be running at `http://localhost:5173`.
+The dev server runs at http://localhost:3000/portfolio/. The `/portfolio/`
+path is not optional: `base` is set in `vite.config.ts` to match the GitHub
+Pages subdirectory, and the site will not resolve at the bare root.
 
-### Build for Production
+### Scripts
 
-```bash
-npm run build
-npm run preview
+| Command | Purpose |
+|---|---|
+| `npm run dev` | Start the dev server |
+| `npm run build` | Typecheck, then build to `dist/` |
+| `npm run preview` | Serve the production build locally |
+| `npm run lint` | Run ESLint |
+
+## Project Structure
+
 ```
-
-## 📁 Project Structure
-
-```
-app/
-├── public/               # Static assets (images)
+portfolio/
+├── public/
+│   ├── certificates/       # Certification images used by the carousel
+│   └── *.jpg, *.png        # Profile and hero imagery
 ├── src/
 │   ├── components/
-│   │   ├── HeroKnot.tsx  # 3D knot animation (unused, kept for reference)
-│   │   └── ui/           # shadcn/ui components
-│   ├── hooks/            # Custom hooks (scroll animation, mobile detection)
-│   ├── lib/              # Utility functions
-│   ├── pages/            # Page components
-│   ├── sections/         # Page sections
-│   │   ├── Hero.tsx      # Hero with magazine-style photo
-│   │   ├── Navigation.tsx# Transparent floating navbar
-│   │   ├── Projects.tsx  # 2-col project card grid
-│   │   ├── Skills.tsx    # Skills & profile card
-│   │   ├── Process.tsx   # Experience timeline
-│   │   ├── Awards.tsx    # Awards section
-│   │   ├── FAQ.tsx       # FAQ accordion
-│   │   ├── Contact.tsx   # Contact form
-│   │   └── Footer.tsx    # Site footer
-│   ├── App.tsx           # Root component
-│   └── main.tsx          # Entry point
+│   │   ├── ThemeProvider.tsx
+│   │   ├── HeroKnot.tsx    # Three.js knot, not currently rendered
+│   │   └── ui/             # shadcn/ui primitives
+│   ├── hooks/
+│   │   ├── useScrollAnimation.ts
+│   │   └── use-mobile.ts
+│   ├── lib/utils.ts
+│   ├── sections/
+│   │   ├── Navigation.tsx
+│   │   ├── Hero.tsx
+│   │   ├── Process.tsx         # Experience timeline
+│   │   ├── Skills.tsx
+│   │   ├── Certifications.tsx
+│   │   ├── Impact.tsx
+│   │   ├── FAQ.tsx
+│   │   ├── Contact.tsx
+│   │   └── Footer.tsx
+│   ├── App.tsx
+│   └── main.tsx
 ├── index.html
 ├── tailwind.config.js
-├── vite.config.ts
-└── package.json
+└── vite.config.ts
 ```
 
-## 📄 License
+Section order is defined in `App.tsx`. Two filenames differ from the section
+they render: `Process.tsx` is the Experience section and `Skills.tsx` holds the
+profile card alongside the skill categories.
 
-This project is for personal use. All rights reserved.
+## Animations
+
+Entrance animations are driven by `useScrollAnimation`, which reads `data-`
+attributes rather than per-component GSAP calls:
+
+- `data-animate` marks an element to animate on scroll into view
+- `data-delay` offsets the start, in seconds
+- `data-stagger` staggers children marked `data-animate-child`
+
+Expanding regions (skill categories, extra experience bullets, FAQ answers)
+animate `grid-template-rows` between `0fr` and `1fr` with the content in an
+`overflow-hidden` child. This interpolates the real content height, so nothing
+needs a hardcoded max height that could clip longer copy. Interpolating `fr`
+units needs Chrome 107+, Safari 16+, or Firefox 120+; older browsers still open
+and close correctly, just without the tween.
+
+## Contact Form
+
+Submissions post to Web3Forms, which relays them to the registered inbox. The
+access key in `Contact.tsx` is public by design, since it ships in the client
+bundle of every static site that uses one. It only routes mail to the address
+that registered it and cannot send mail as you or read anything.
+
+`CONTACT_EMAIL` and `WEB3FORMS_ACCESS_KEY` are independent. Changing the
+displayed address does not move where submissions land; that needs a new key
+issued for the new address at web3forms.com.
+
+## Deployment
+
+Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds and
+publishes `dist/` to GitHub Pages. Feature branches do not deploy.
+
+## Development Notes
+
+`server.watch.usePolling` is enabled in `vite.config.ts`. Native FSEvents
+watching has proven unreliable at this path, silently serving stale modules
+with no error in the terminal or browser. Polling trades a little CPU for
+correctness. If edits ever stop reaching the browser, confirm what the server
+is actually serving before debugging the code:
+
+```bash
+curl -s http://localhost:3000/portfolio/src/App.tsx | head
+```
+
+## License
+
+Personal project. All rights reserved.
