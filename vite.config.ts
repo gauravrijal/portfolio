@@ -9,6 +9,12 @@ export default defineConfig({
   plugins: [inspectAttr(), react()],
   server: {
     port: 3000,
+    // Native FSEvents watching has proven unreliable at this path, silently
+    // serving stale modules for hours. Polling trades CPU for correctness.
+    watch: {
+      usePolling: true,
+      interval: 300,
+    },
   },
   resolve: {
     alias: {

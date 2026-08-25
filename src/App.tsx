@@ -3,10 +3,10 @@ import Lenis from 'lenis'
 import { useScrollAnimation } from './hooks/useScrollAnimation'
 import Navigation from './sections/Navigation'
 import Hero from './sections/Hero'
-import Projects from './sections/Projects'
+import Certifications from './sections/Certifications'
 import Skills from './sections/Skills'
 import Process from './sections/Process'
-import Awards from './sections/Awards'
+import Impact from './sections/Impact'
 import FAQ from './sections/FAQ'
 import Contact from './sections/Contact'
 import Footer from './sections/Footer'
@@ -44,10 +44,10 @@ function App() {
     <div className="min-h-screen bg-[#F2F2F2] dark:bg-[#0A0A0A] transition-colors duration-300">
       <Navigation />
       <Hero />
-      <Projects />
-      <Skills />
       <Process />
-      <Awards />
+      <Skills />
+      <Certifications />
+      <Impact />
       <FAQ />
       <Contact />
       <Footer />

@@ -1,6 +1,12 @@
 import { useState } from 'react'
 import { Send, Loader2, AlertCircle, Linkedin, Github, Instagram } from 'lucide-react'
 
+const CONTACT_EMAIL = 'rijalgaurav789@gmail.com'
+
+// Tied to the inbox that registered it at web3forms.com. Changing CONTACT_EMAIL
+// does not move the form; a key for the new address has to be issued there.
+const WEB3FORMS_ACCESS_KEY = '2546b593-8ca7-4c24-9e7d-2b0a58c84a6b'
+
 const DiscordIcon = ({ size = 20 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
     <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z" />
@@ -39,7 +45,7 @@ export default function Contact() {
     // Web3Forms displays each named field as a labeled row in their email template.
     // We use descriptive field names and add the access key + metadata.
     const payload = new FormData()
-    payload.append('access_key', '6d5a736c-f146-400c-a130-494da4de9934')
+    payload.append('access_key', WEB3FORMS_ACCESS_KEY)
     payload.append('subject', `Portfolio: ${subject}`)
     payload.append('from_name', `${name} via Portfolio`)
     payload.append('replyto', email)
@@ -81,15 +87,15 @@ export default function Contact() {
               Gaurav
             </h2>
             <p className="text-base text-[#666] dark:text-[#A1A1A1] max-w-[500px] mx-auto leading-relaxed">
-              Computer Science graduate crafting thoughtful, impactful digital
-              experiences through code and creativity.
+              Identity and access management engineer, focused on governance,
+              lifecycle automation, and least-privilege access at enterprise scale.
             </p>
 
             <a
-              href="mailto:rijalgaurav078@gmail.com"
+              href={`mailto:${CONTACT_EMAIL}`}
               className="inline-block text-base text-[#1A1A1A] dark:text-[#EAEAEA] mt-8 underline underline-offset-4 decoration-[#E5E5E5] dark:decoration-white/20 hover:decoration-[#1A1A1A] dark:hover:decoration-white transition-colors duration-300"
             >
-              rijalgaurav078@gmail.com
+              {CONTACT_EMAIL}
             </a>
 
             <div className="flex items-center justify-center gap-6 mt-8">
@@ -173,7 +179,7 @@ export default function Contact() {
                       required
                       rows={4}
                       className="w-full bg-[#F8F8F8] dark:bg-[#0A0A0A] border border-[#E5E5E5] dark:border-white/10 rounded-lg px-4 py-3 text-sm text-[#1A1A1A] dark:text-[#EAEAEA] placeholder:text-[#999] dark:placeholder:text-[#555] focus:border-[#1A1A1A] dark:focus:border-white focus:outline-none transition-colors duration-200 resize-y"
-                      placeholder="Tell me about your project..."
+                      placeholder="Tell me about the role or project..."
                     />
                   </div>
 
@@ -208,12 +214,12 @@ export default function Contact() {
               <div className="flex items-center gap-4 mt-6 pt-6 border-t border-[#E5E5E5] dark:border-white/10">
                 <img
                   src={`${import.meta.env.BASE_URL}profile-avatar.jpg`}
-                  alt="Gaurav"
+                  alt="Gaurav Rijal"
                   className="w-10 h-10 rounded-full object-cover"
                 />
-                <div className="flex-1">
-                  <p className="text-sm font-medium text-[#1A1A1A] dark:text-[#EAEAEA]">
-                    rijalgaurav078@gmail.com
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-[#1A1A1A] dark:text-[#EAEAEA] truncate">
+                    {CONTACT_EMAIL}
                   </p>
                   <p className="text-xs text-[#666] dark:text-[#A1A1A1]">reply within 24 hrs</p>
                 </div>

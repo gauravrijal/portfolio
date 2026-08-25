@@ -21,8 +21,9 @@ export default function Navigation() {
 
   const navLinks = [
     { label: 'Home', href: '#home' },
-    { label: 'Projects', href: '#projects' },
     { label: 'Experience', href: '#experience' },
+    { label: 'Skills', href: '#skills' },
+    { label: 'Certifications', href: '#certifications' },
     { label: 'Contact', href: '#contact' },
   ]
 
@@ -51,18 +52,18 @@ export default function Navigation() {
           {/* Logo */}
           <a
             href="#home"
-            className="font-script text-2xl font-semibold text-[#1A1A1A] dark:text-[#EAEAEA] shrink-0 transition-colors"
+            className="font-script text-2xl font-semibold text-[#1A1A1A] dark:text-[#EAEAEA] shrink-0 whitespace-nowrap transition-colors"
           >
             Gaurav Rijal
           </a>
 
           {/* Nav Links - Desktop */}
-          <div className="hidden md:flex items-center gap-8 mx-auto">
+          <div className="hidden md:flex flex-1 min-w-0 items-center justify-center gap-5 lg:gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm font-medium text-[#555] dark:text-[#A1A1A1] hover:text-[#1A1A1A] dark:hover:text-[#EAEAEA] transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1.5px] after:bg-[#1A1A1A] dark:after:bg-[#EAEAEA] after:transition-all after:duration-300 hover:after:w-full"
+                className="shrink-0 whitespace-nowrap text-sm font-medium text-[#555] dark:text-[#A1A1A1] hover:text-[#1A1A1A] dark:hover:text-[#EAEAEA] transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[1.5px] after:bg-[#1A1A1A] dark:after:bg-[#EAEAEA] after:transition-all after:duration-300 hover:after:w-full"
               >
                 {link.label}
               </a>
@@ -73,17 +74,17 @@ export default function Navigation() {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 text-[#555] dark:text-[#A1A1A1] hover:text-[#1A1A1A] dark:hover:text-[#EAEAEA] transition-colors rounded-full hover:bg-black/5 dark:hover:bg-white/10"
+              className="relative w-9 h-9 flex items-center justify-center text-[#555] dark:text-[#A1A1A1] hover:text-[#1A1A1A] dark:hover:text-[#EAEAEA] transition-colors rounded-full hover:bg-black/5 dark:hover:bg-white/10"
               aria-label="Toggle theme"
             >
-              <Moon className="w-5 h-5 hidden dark:block" />
-              <Sun className="w-5 h-5 block dark:hidden" />
+              <Sun className="absolute w-5 h-5 transition-all duration-300 ease-out opacity-100 rotate-0 scale-100 dark:opacity-0 dark:-rotate-90 dark:scale-75" />
+              <Moon className="absolute w-5 h-5 transition-all duration-300 ease-out opacity-0 rotate-90 scale-75 dark:opacity-100 dark:rotate-0 dark:scale-100" />
             </button>
 
             {/* CTA Button - Desktop */}
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 bg-[#1A1A1A] dark:bg-[#EAEAEA] text-white dark:text-[#1A1A1A] text-sm font-medium px-5 py-2.5 rounded-full hover:bg-[#333] dark:hover:bg-white hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300"
+              className="hidden lg:inline-flex items-center gap-2 bg-[#1A1A1A] dark:bg-[#EAEAEA] text-white dark:text-[#1A1A1A] text-sm font-medium px-5 py-2.5 rounded-full hover:bg-[#333] dark:hover:bg-white hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300 whitespace-nowrap"
             >
               Get In Touch
               <ArrowUpRight size={16} />
@@ -94,18 +95,30 @@ export default function Navigation() {
           <div className="flex items-center gap-3 md:hidden">
             <button
               onClick={toggleTheme}
-              className="p-2 text-[#555] dark:text-[#A1A1A1] hover:text-[#1A1A1A] dark:hover:text-[#EAEAEA] transition-colors rounded-full"
+              className="relative w-9 h-9 flex items-center justify-center text-[#555] dark:text-[#A1A1A1] hover:text-[#1A1A1A] dark:hover:text-[#EAEAEA] transition-colors rounded-full"
               aria-label="Toggle theme"
             >
-              <Moon className="w-5 h-5 hidden dark:block" />
-              <Sun className="w-5 h-5 block dark:hidden" />
+              <Sun className="absolute w-5 h-5 transition-all duration-300 ease-out opacity-100 rotate-0 scale-100 dark:opacity-0 dark:-rotate-90 dark:scale-75" />
+              <Moon className="absolute w-5 h-5 transition-all duration-300 ease-out opacity-0 rotate-90 scale-75 dark:opacity-100 dark:rotate-0 dark:scale-100" />
             </button>
             <button
-              className="p-2 text-[#1A1A1A] dark:text-[#EAEAEA]"
+              className="relative w-10 h-10 flex items-center justify-center text-[#1A1A1A] dark:text-[#EAEAEA]"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle menu"
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              <Menu
+                size={24}
+                className={`absolute transition-all duration-300 ease-out ${
+                  mobileMenuOpen ? 'opacity-0 rotate-90 scale-75' : 'opacity-100 rotate-0 scale-100'
+                }`}
+              />
+              <X
+                size={24}
+                className={`absolute transition-all duration-300 ease-out ${
+                  mobileMenuOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-90 scale-75'
+                }`}
+              />
             </button>
           </div>
         </div>
@@ -113,19 +126,17 @@ export default function Navigation() {
 
       {/* Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-500 bg-[#F2F2F2]/85 dark:bg-[#0A0A0A]/85 ${
-          mobileMenuOpen
+        className={`fixed inset-0 z-40 md:hidden transition-all duration-500 bg-[#F2F2F2]/85 dark:bg-[#0A0A0A]/85 ${mobileMenuOpen
             ? 'opacity-100 pointer-events-auto'
             : 'opacity-0 pointer-events-none'
-        }`}
+          }`}
         style={{
           WebkitBackdropFilter: 'blur(20px) saturate(180%)',
           backdropFilter: 'blur(20px) saturate(180%)',
         }}
       >
-        <div className={`flex flex-col gap-6 pt-28 px-8 transition-all duration-500 ${
-          mobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
-        }`}>
+        <div className={`flex flex-col gap-6 pt-28 px-8 transition-all duration-500 ${mobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-4 opacity-0'
+          }`}>
           {navLinks.map((link, i) => (
             <a
               key={link.label}

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import * as THREE from 'three'
 
-// Lissajous 2:1 figure-8 — loops at top & bottom, crossing at centre.
+// Lissajous 2:1 figure-8 - loops at top & bottom, crossing at centre.
 // Fully smooth parametric formula → stable Frenet frames → clean bead rings.
 class RopeCurve extends THREE.Curve<THREE.Vector3> {
   private s: number
@@ -10,8 +10,8 @@ class RopeCurve extends THREE.Curve<THREE.Vector3> {
     const a = t * Math.PI * 2
     return new THREE.Vector3(
       this.s * 0.78 * Math.sin(2 * a),  // horizontal bars through each loop
-      this.s * 1.55 * Math.sin(a),       // vertical — big loops top and bottom
-      this.s * 0.52 * Math.cos(a),       // depth — front / back at the crossing
+      this.s * 1.55 * Math.sin(a),       // vertical - big loops top and bottom
+      this.s * 0.52 * Math.cos(a),       // depth - front / back at the crossing
     )
   }
 }

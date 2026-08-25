@@ -3,29 +3,29 @@ import { ChevronUp } from 'lucide-react'
 
 const faqs = [
   {
-    question: 'What technologies do you specialize in?',
+    question: 'What do you specialize in?',
     answer:
-      'I specialize in Java, Python, and JavaScript development. For web development, I work with React, HTML/CSS, and have experience with Spring Boot for backend development. I\'m also proficient with SQL databases including MySQL and PostgreSQL.',
+      'Identity and access management. I design and run identity governance programs on SailPoint IdentityIQ and Identity Security Cloud, covering joiner-mover-leaver lifecycle automation, access certifications, role-based access control, and segregation of duties. I also work across Okta and Microsoft Entra ID for single sign-on, adaptive MFA, and conditional access.',
   },
   {
-    question: 'What kind of projects have you built?',
+    question: 'Which platforms and protocols do you work with?',
     answer:
-      'I\'ve built a home server setup for web hosting and media streaming (won TechXpo 2024 People\'s Choice Award), a live parking system prototype for my university campus at Hawkarthon 2024, and responsive business websites deployed on GitHub Pages.',
+      'SailPoint IdentityIQ, Identity Security Cloud, and IdentityNow day to day, alongside Okta, Microsoft Entra ID, Saviynt, and Non-Employee Risk Management. On the integration side I work with REST APIs, SCIM, SAML 2.0, OAuth 2.0, and OpenID Connect, and I build custom rules, connectors, and workflows in Java and BeanShell.',
   },
   {
-    question: 'Are you currently available for internships?',
+    question: 'What scale of environments have you worked in?',
     answer:
-      'Yes, I\'m actively seeking Software Engineering internship and job opportunities. I\'m eager to apply my skills in a professional environment and contribute to meaningful projects.',
+      'Enterprise. I have delivered lifecycle management, access certifications, and audit reporting across more than 50,000 identities, and configured SCIM-based provisioning for over 100 SaaS and IaaS applications. I have also led a migration from on-premises IdentityIQ to Identity Security Cloud, and run certification campaigns and access audits supporting SOX, HIPAA, and ISO 27001 compliance.',
   },
   {
     question: 'What is your educational background?',
     answer:
-      'I graduated with a B.S. in Computer Science from the University of Louisiana at Monroe (May 2026). My coursework covered algorithms, databases, networking, operating systems, and software engineering.',
+      'I hold a Bachelor of Science in Computer Science from the University of Louisiana at Monroe. Alongside the degree I maintain industry certifications including the SailPoint Identity Security Leader Credential, Saviynt Identity Security for the AI Age, CompTIA Security+, Non-Human Identity Fundamentals, Ethical Hacking Essentials, and both the AWS Certified Cloud Practitioner and AWS Certified AI Practitioner.',
   },
   {
     question: 'How can I contact you?',
     answer:
-      'You can reach me via email at rijalgaurav078@gmail.com, connect with me on LinkedIn, or use the contact form below. I typically respond within 24 hours.',
+      'You can reach me via email at rijalgaurav789@gmail.com, connect with me on LinkedIn, or use the contact form below. I am open to IAM and identity governance engineering roles, and I typically respond within 24 hours.',
   },
 ]
 
@@ -43,7 +43,7 @@ export default function FAQ() {
           <div className="flex items-center gap-2 mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-[#1A1A1A] dark:bg-[#EAEAEA]"></span>
             <span className="text-[13px] font-medium text-[#666] dark:text-[#A1A1A1] tracking-wide">
-              FAQ'S
+              FAQs
             </span>
           </div>
           <h2 className="font-display text-[32px] md:text-[48px] text-[#1A1A1A] dark:text-[#EAEAEA] leading-[1.15] max-w-[600px] mb-12">
@@ -73,13 +73,16 @@ export default function FAQ() {
                 />
               </button>
               <div
-                className={`overflow-hidden transition-all duration-300 ${
-                  openIndex === index ? 'max-h-96' : 'max-h-0'
+                className={`grid transition-[grid-template-rows,opacity] duration-300 ease-out ${
+                  openIndex === index ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
                 }`}
+                aria-hidden={openIndex !== index}
               >
-                <p className="px-5 md:px-6 pb-5 md:pb-6 text-sm text-[#666] dark:text-[#A1A1A1] leading-relaxed">
-                  {faq.answer}
-                </p>
+                <div className="overflow-hidden">
+                  <p className="px-5 md:px-6 pb-5 md:pb-6 text-sm text-[#666] dark:text-[#A1A1A1] leading-relaxed">
+                    {faq.answer}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
